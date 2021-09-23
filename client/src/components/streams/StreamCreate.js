@@ -1,5 +1,7 @@
 import React from 'react';
-import { Field, formValues, reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux'
+import { createStream } from '../../store/actions';
 
 const StreamCreate = props => {
   // console.log(props)
@@ -28,7 +30,9 @@ const StreamCreate = props => {
   };
 
   const onSubmit = formValues => {
-    console.log(formValues);
+    // console.log(formValues);
+    // dispatch createNewStream action on Submit
+    props.createNewStream(formValues)
   };
 
   return (
@@ -60,7 +64,15 @@ const validate = formValues => {
   return errors;
 };
 
-export default reduxForm({
+const mapDispatchToProps = dispatch => {
+  return {
+    createNewStream: (formValues) => dispatch(createStream(formValues))
+  }
+}
+
+const formWrapped = reduxForm({
   form: 'streamCreate',
   validate: validate
 })(StreamCreate);
+
+export default connect(null, mapDispatchToProps)(formWrapped)

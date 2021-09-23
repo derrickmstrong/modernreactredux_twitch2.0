@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { signIn, signOut } from '../store/actions';
 
 const GoogleAuth = props => {
-  console.log(props)
+  // console.log(props)
   useEffect(() => {
     window.gapi.load('client:auth2', () => {
       window.gapi.client
