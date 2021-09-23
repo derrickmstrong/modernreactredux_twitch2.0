@@ -6,7 +6,7 @@ import {
   FETCH_STREAMS,
   FETCH_STREAM,
   DELETE_STREAM,
-  EDIT_STREAM
+  EDIT_STREAM,
 } from '../actionTypes';
 
 export const signIn = userId => {
@@ -22,44 +22,50 @@ export const signOut = () => {
   };
 };
 
-export const createStream = formValues => async dispatch => {
-  const response = await streamsAPI.post('/streams', formValues);
+export const createStream = formValues => async (dispatch, getState) => {
+  const { userId } = getState().auth; // Grab the userId from the auth state in Redux store
+
+  const response = await streamsAPI.post('/streams', {...formValues, userId}); // Add userId to formValues object so that we know who created the stream based on userId
 
   dispatch({
     type: CREATE_STREAM,
     payload: response.data,
   });
+
+  // Programmatic navigation
+  // Get user back to the roor route
+  
 };
 
 export const fetchStreams = () => async dispatch => {
-    const response = await streamsAPI.get('/streams')
+  const response = await streamsAPI.get('/streams');
 
-    dispatch({
-        type: FETCH_STREAMS,
-        payload: response.data
-    })
-}
+  dispatch({
+    type: FETCH_STREAMS,
+    payload: response.data,
+  });
+};
 
-export const fetchStream = (id) => async dispatch => {
-    const response = await streamsAPI.get(`/streams/${id}`)
+export const fetchStream = id => async dispatch => {
+  const response = await streamsAPI.get(`/streams/${id}`);
 
-    dispatch({
-        type: FETCH_STREAM,
-        payload: response.data
-    })
-}
+  dispatch({
+    type: FETCH_STREAM,
+    payload: response.data,
+  });
+};
 
 export const editStream = (id, formValues) => async dispatch => {
-    const response = await streamsAPI.put(`/streams/${id}`, formValues)
+  const response = await streamsAPI.put(`/streams/${id}`, formValues);
 
-    dispatch({
-        type: EDIT_STREAM,
-        payload: response.data
-    })
-}
+  dispatch({
+    type: EDIT_STREAM,
+    payload: response.data,
+  });
+};
 
-export const deleteStream = (id) => async dispatch => {
-    await streamsAPI.delete(`/streams/${id}`)
+export const deleteStream = id => async dispatch => {
+  await streamsAPI.delete(`/streams/${id}`);
 
   dispatch({
     type: DELETE_STREAM,
