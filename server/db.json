@@ -1,3 +1,25 @@
 {
-    "streams": []
+  "streams": [
+    {
+      "title": "The Best Stream",
+      "description": "TBS v1",
+      "id": 1
+    },
+    {
+      "title": "The Best Stream Ever",
+      "description": "TBS v2",
+      "id": 2
+    },
+    {
+      "title": "The Best Stream Ever In Life",
+      "description": "TBS v3",
+      "id": 3
+    },
+    {
+      "title": "New New Stream",
+      "description": "It's the best yet",
+      "userId": "114427133124966397104",
+      "id": 4
+    }
+  ]
 }
