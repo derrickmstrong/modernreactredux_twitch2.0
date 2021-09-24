@@ -57,12 +57,16 @@ export const fetchStream = id => async dispatch => {
 };
 
 export const editStream = (id, formValues) => async dispatch => {
-  const response = await streamsAPI.put(`/streams/${id}`, formValues);
+  const response = await streamsAPI.patch(`/streams/${id}`, formValues);
 
   dispatch({
     type: EDIT_STREAM,
     payload: response.data,
   });
+
+  // Programmatic navigation
+  // Get user back to the root route
+  history.push('/');
 };
 
 export const deleteStream = id => async dispatch => {
