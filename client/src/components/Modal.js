@@ -12,7 +12,7 @@ const Modal = props => {
         onClick={e => e.stopPropagation()} // Prevent clicking on the modal to trigger history.push('/') for elements within the outer div
         className='ui standard modal visible active'
       >
-        <i onClick={() => props.onDismiss()} className="close icon"></i>
+        <i onClick={props.onDismiss} className="close icon"></i>
         <div className='header'>{props.title}</div>
         <div className='content'>{props.content}</div>
         <div className='actions'>{props.actions}</div>
