@@ -76,4 +76,8 @@ export const deleteStream = id => async dispatch => {
     type: DELETE_STREAM,
     payload: id,
   });
+
+  // Programmatic navigation
+  // Get user back to the root route
+  history.push('/');
 };
