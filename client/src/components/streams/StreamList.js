@@ -34,6 +34,7 @@ const StreamList = ({ streams, getAllStreams, currentUserId, isSignedIn }) => {
   };
 
   const renderList = streams.map(stream => {
+    if (currentUserId !== stream.userId) return null;
     return (
       <div className='item' key={stream.id}>
         {/* In otder for Semantic UI to format button correctly, renderAdmin(stream) has to be at top */}
