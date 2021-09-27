@@ -5,20 +5,22 @@ import { fetchStream } from '../../store/actions';
 const StreamShow = props => {
   console.log(props);
   const { id } = props.match.params;
-  const { title, description } = props.stream;
-
+  
   useEffect(() => {
     props.getStreams(id);
     return () => {};
   }, []);
-
+  
   // Check if stream has loaded yet; if not, return null (or nothing)
   if (!props.stream) return null;
+  
+  // Now destructure props.stream
+  const { title, description } = props.stream;
 
   return (
     <Fragment>
-      {title}
-      {description}
+      <h1>{title}</h1>
+      <h5>{description}</h5>
     </Fragment>
   );
 };
