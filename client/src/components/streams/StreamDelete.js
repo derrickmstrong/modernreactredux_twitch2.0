@@ -7,7 +7,7 @@ import { deleteStream, fetchStream } from '../../store/actions';
 
 const StreamDelete = props => {
   console.log(props);
-  const id = props.match.params.id;
+  const { id } = props.match.params;
 
   useEffect(() => {
     props.getStream(id);
@@ -17,10 +17,14 @@ const StreamDelete = props => {
   // Check if stream has loaded yet; if not, do not show modal
   if (!props.stream) return null
 
+  // Now destructure props
+  const { deleteStream } = props
+  const { title } = props.stream
+
   const renderActions = () => {
     return (
       <Fragment>
-        <button onClick={() => props.deleteStream(id)} className='ui button negative'>Delete</button>
+        <button onClick={() => deleteStream(id)} className='ui button negative'>Delete</button>
         <Link to='/' className='ui button'>Cancel</Link>
       </Fragment>
     );
@@ -34,8 +38,8 @@ const StreamDelete = props => {
     <div>
       StreamDelete
       <Modal
-        title={`Delete ${props.stream.title}?`}
-        content={`Are you sure you want to delete the stream: ${props.stream.title}?`}
+        title={`Delete ${title}?`}
+        content={`Are you sure you want to delete the stream: ${title}?`}
         actions={renderActions()}
         onDismiss={onDismiss}
       />
