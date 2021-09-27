@@ -23,7 +23,7 @@ export const signOut = () => {
   };
 };
 
-// CRUD ops
+// CRUD operations
 
 export const createStream = formValues => async (dispatch, getState) => {
   const { userId } = getState().auth; // Grab the userId from the auth state in Redux store
